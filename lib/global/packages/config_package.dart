@@ -5,3 +5,4 @@ export 'package:learning_project/global/networking/index.dart';
 export 'package:learning_project/global/route/index.dart';
 export 'package:learning_project/global/theme/index.dart';
 export 'package:learning_project/global/utility/index.dart';
+export 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

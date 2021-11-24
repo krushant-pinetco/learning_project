@@ -28,14 +28,15 @@ class SplashController extends GetxController {
     bool isInternet = await helper.isNetworkConnection();
     if (isInternet) {
       String authToken = helper.getStorage(session.authToken);
-      // var id = helper.getStorage(session.id);
+      var id = helper.getStorage(session.id);
       print("authToken : $authToken");
-      Get.offAndToNamed(routeName.home);
-      // if (!helper.isNullOrBlank(authToken) && !helper.isNullOrBlank(id)) {
-      //   Get.offAndToNamed(routeName.home);
-      // } else {
-      //   // Get.offAndToNamed(routeName.login);
-      // }
+      // Get.offAndToNamed(routeName.login);
+      // Get.offAndToNamed(routeName.home);
+      if (!helper.isNullOrBlank(authToken) && !helper.isNullOrBlank(id)) {
+        Get.offAndToNamed(routeName.home);
+      } else {
+        Get.offAndToNamed(routeName.login);
+      }
     } else {
       helper.goToNoInternetScreen();
     }

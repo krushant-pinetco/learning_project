@@ -8,6 +8,8 @@ RouteName _routeName = RouteName();
 
 class AppRoute {
   final List<GetPage> getPages = [
+    // Authentication
+    GetPage(name: _routeName.login, page: () => LoginScreen()),
     GetPage(name: _routeName.home, page: () => HomeScreen()),
     GetPage(name: _routeName.noInternet, page: () => NoInternet()),
   ];

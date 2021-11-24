@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/icons/home.png",
+                    iconAssets.home,
                     width: appScreenUtil.screenWidth(150),
                   ),
                   SizedBox(height: 20),

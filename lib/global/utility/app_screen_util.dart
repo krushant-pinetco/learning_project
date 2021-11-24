@@ -22,7 +22,7 @@ class AppScreenUtil {
   }
 
   double screenActualHeight() {
-    return ScreenUtil().screenWidth;
+    return ScreenUtil().screenHeight;
   }
 
   double size(num size) {
