@@ -1,33 +1,53 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class HomeTabController extends GetxController with SingleGetTickerProviderMixin {
+  Timer? timer;
   String startStop = "Start";
+  bool isRunning = true;
+  static Duration countdownDuration = Duration();
+  Duration duration = const Duration();
+  dynamic seconds;
+  bool isCountdown = true;
 
-  late String timeString;
-
-  String _formatDateTime(DateTime dateTime) {
-    return DateFormat.Hm().format(dateTime);
+  // UpdateTimer Functions
+  void _addTime() {
+    final addSeconds = isCountdown ? 1 : 0;
+    seconds = (duration.inSeconds + addSeconds);
+    if (seconds < 0) {
+      timer?.cancel();
+    } else {
+      duration = Duration(seconds: seconds);
+      print("TIMER START /*****************/ , $duration");
+    }
+    update();
   }
 
-  @override
-  void onInit() {
-    timeString = _formatDateTime(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
-    super.onInit();
+  void reset() {
+    if (isCountdown) {
+      print("RESET TIMER /#####################/");
+      duration = countdownDuration;
+    } else {
+      duration = Duration();
+    }
+    update();
   }
 
-  void _getTime() {
-    final DateTime now = DateTime.now();
-    final String formattedDateTime = _formatDateTime(now);
-    timeString = formattedDateTime;
+  void stopTimer({bool resets = true}) {
+    if (resets) {
+      print("INSERT TIMER : @@@@@@@@@@@@@@@@@@@@@");
+      reset();
+      // _addTime();
+    }
+    timer!.cancel();
+    print("STOP TIMER::::");
+    update();
   }
 
-  void timerStart() {
-    print("Timer Start And Stop::::::::::::::::");
-    timeString == "Start" ? "Start" : "Stop";
+  void startTimer({bool resets = true}) {
+    print("START TIMER::::");
+    timer = Timer.periodic(Duration(seconds: 1), (_) => _addTime());
     update();
   }
 }
